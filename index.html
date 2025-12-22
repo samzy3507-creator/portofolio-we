@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dihyah - Portfolio Pelajar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navbar */
+        header {
+            background-color: white;
+            box-shadow: var(--card-shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 0 6rem;
+            text-align: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin-top: 4rem;
+            border-radius: 0 0 30px 30px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        .learning-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .learning-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .learning-list i {
+            color: var(--accent);
+        }
+
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background-color: white;
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            transition: var(--transition);
+            border-top: 5px solid var(--primary);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .skill-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* Projects */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 1.8rem;
+        }
+
+        .project-content h3 {
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+
+        .project-content p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background-color: var(--light-gray);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Contact */
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-text {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .contact-text span {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .contact-details h4 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .contact-details p {
+            color: var(--gray);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background-color: var(--light-gray);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: white;
+            display: inline-block;
+        }
+
+        .footer-logo span {
+            color: var(--accent);
+        }
+
+        .footer-text {
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .tech-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 1.5rem;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero {
+                padding: 8rem 0 4rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .learning-list {
+                justify-content: center;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .btn-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navbar -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#home" class="logo">
+                    <i class="fas fa-code"></i> <span>Dihyah</span>
+                </a>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home" class="active">Beranda</a></li>
+                    <li><a href="#about">Tentang Saya</a></li>
+                    <li><a href="#skills">Keahlian</a></li>
+                    <li><a href="#projects">Project</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Halo, saya <span>Dihyah</span></h1>
+            <p>Pelajar yang sedang belajar Web Development dan tertarik menciptakan website yang menarik dan fungsional.</p>
+            <div class="btn-container">
+                <a href="#projects" class="btn btn-primary">
+                    <i class="fas fa-eye"></i> Lihat Project
+                </a>
+                <a href="#contact" class="btn btn-outline">
+                    <i class="fas fa-paper-plane"></i> Hubungi Saya
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tentang Saya</h2>
+                <p>Mari berkenalan dengan saya dan perjalanan belajar saya</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="images/foto-santri-HSI-BS.jpg" alt="Foto Dihyah">
+                </div>
+                <div class="about-text">
+                    <h3>Pelajar yang Penuh Semangat</h3>
+                    <p>Halo! Saya Dihyah, seorang pelajar SMA IT HSI BS yang sangat tertarik dengan dunia teknologi dan pemrograman. Saya mulai belajar web development karena terpesona dengan bagaimana kode dapat diubah menjadi sesuatu yang visual dan interaktif.</p>
+                    <p>Saat ini saya sedang fokus mempelajari dasar-dasar pengembangan web untuk membangun fondasi yang kuat sebelum melanjutkan ke teknologi yang lebih advanced.</p>
+                    
+                    <ul class="learning-list">
+                        <li><i class="fas fa-check-circle"></i> Sedang belajar HTML & CSS</li>
+                        <li><i class="fas fa-check-circle"></i> Menjelajahi Tailwind CSS</li>
+                        <li><i class="fas fa-check-circle"></i> Berlatih membuat proyek sederhana</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>Keahlian Saya</h2>
+                <p>Teknologi yang sedang saya pelajari dan kembangkan</p>
+            </div>
+            
+            <div class="skills-container">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <h3>HTML</h3>
+                    <p>Memahami struktur dasar HTML, semantic elements, dan best practices untuk membuat kerangka website yang baik.</p>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-css3-alt"></i>
+                    </div>
+                    <h3>CSS</h3>
+                    <p>Mempelajari styling, layout dengan Flexbox dan Grid, animasi sederhana, serta prinsip desain responsif.</p>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <h3>Tailwind CSS</h3>
+                    <p>Sedang menjelajahi utility-first CSS framework untuk mengembangkan UI lebih cepat dan konsisten.</p>
+                </div>
+                
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Project</h2>
+                <p>Hasil belajar saya yang dituangkan dalam proyek-proyek sederhana</p>
+            </div>
+            
+            <div class="projects-container">
+
+                
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://plus.unsplash.com/premium_photo-1661877737564-3dfd7282efcb?q=80&w=900&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Clone Website">
+                    </div>
+                    <div class="project-content">
+                        <h3>Slicing Website reebok</h3>
+                        <a href="https://slicing-web-rho.vercel.app/" class="btn btn-outline" style="width: 100%; justify-content: center;">
+                            <i class="fas fa-external-link-alt"></i> Lihat Project
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="data:image/png;base64,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" alt="Clone Website">
+                    </div>
+                    <div class="project-content">
+                        <h3>Project Python</h3>
+                        <a href="https://github.com/samzy3507-creator/api-python" class="btn btn-outline" style="width: 100%; justify-content: center;">
+                            <i class="fas fa-external-link-alt"></i> Lihat Project
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/poster-qoidah-samiriyyah-2.png" alt="Clone Website">
+                    </div>
+                    <div class="project-content">
+                        <h3>poster tahajji</h3>
+                        <a href="https://drive.google.com/file/d/1rkPv6J3edRqPclOmkzFrtvJLhF5owT5j/view" class="btn btn-outline" style="width: 100%; justify-content: center;">
+                            <i class="fas fa-external-link-alt"></i> Lihat Project
+                        </a>
+                    </div>
+                </div>
+
+
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/qoidah-samiriyyah.jpg" alt="Tahajji Qoidah Samiriyyah">
+                    </div>
+                    <div class="project-content">
+                        <h3>Tahajji</h3>
+                       
+                        <a href="https://www.youtube.com/watch?v=OdKmPXO2uDU" class="btn btn-outline" style="width: 100%; justify-content: center;">
+                            <i class="fas fa-external-link-alt"></i> Lihat Project
+                        </a>
+                    </div>
+                </div>
+                
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://pesantrenmaqi.net/wp-content/uploads/2017/03/Al-Arabiyyah-Baina-Yadaik.png" alt="Dauroh 4 Bulan B.Arab">
+                    </div>
+                    <div class="project-content">
+                        <h3>B.Arab</h3>
+                        
+                       
+                        <a href="https://www.youtube.com/watch?v=vlBH0-FG2f8" class="btn btn-outline" style="width: 100%; justify-content: center;">
+                            <i class="fas fa-external-link-alt"></i> Lihat Project
+                        </a>
+                    </div>
+                </div>
+                
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://media.istockphoto.com/id/92233021/photo/the-holy-quran.webp?a=1&s=612x612&w=0&k=20&c=uaQAOX1bnUD0JzHyCv8Snm3IVy9z_i1g6avVUUPannY=" alt="Tasmi juz 30">
+                    </div>
+                    <div class="project-content">
+                        <h3>Tasmi Juz 30</h3>
+                        
+                        <a href="https://www.youtube.com/watch?v=WTB4ZHMFuww&t=1687s" class="btn btn-outline" style="width: 100%; justify-content: center;">
+                            <i class="fas fa-external-link-alt"></i> Lihat Project
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Kontak</h2>
+                <p>Mari terhubung dan belajar bersama</p>
+            </div>
+            
+            <div class="contact-content">
+                <p class="contact-text">
+                    Saya terbuka untuk <span>belajar bersama</span>, berdiskusi tentang web development, atau sekadar berbagi pengalaman belajar. Jangan ragu untuk menghubungi saya!
+                </p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>samzy3507@email.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Lokasi</h4>
+                            <p>Indonesia</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://github.com/samzy3507-creator/Tugas-HTML" target="_blank" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.instagram.com/dih12108" target="_blank" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/+6285126712485" target="_blank" title="whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sam-zy-15b24b395/" target="_blank" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="#home" class="footer-logo">
+                    <i class="fas fa-code"></i> <span>Dihyah</span>
+                </a>
+                <p class="footer-text">Portfolio sederhana seorang pelajar yang sedang belajar dan mengeksplorasi dunia web development.</p>
+                
+                <div class="tech-stack">
+                    <span class="tech-item">HTML</span>
+                    <span class="tech-item">CSS</span>
+                    <span class="tech-item">Tailwind CSS</span>
+                    
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://github.com" target="_blank" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>Portfolio Pelajar – Dihyah © 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Update active nav link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            let current = '';
+            const scrollPosition = window.scrollY + 100;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // 
+    
+    </script>
+</body>
+</html>
